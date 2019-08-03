@@ -8,7 +8,7 @@ import tornado.ioloop
 class LuxSensor(Thing):
     """A lux sensor which updates its measurement every few seconds."""
 
-    def __init__(self):
+    def __init__(self, poll_delay):
         Thing.__init__(
             self,
             "urn:dev:ops:tsl2561-lux-sensor",
@@ -37,7 +37,7 @@ class LuxSensor(Thing):
         )
 
         logging.debug("starting the sensor update looping task")
-        self.timer = tornado.ioloop.PeriodicCallback(self.update_level, 3000)
+        self.timer = tornado.ioloop.PeriodicCallback(self.update_level, poll_delay)
         self.timer.start()
 
     def update_level(self):
@@ -54,13 +54,13 @@ class LuxSensor(Thing):
         return abs(70.0 * random.random() * (-0.5 + random.random()))
 
 
-def run_server():
+def run_server(port=8888, poll_delay=3.0):
 
-    sensor = LuxSensor()
+    sensor = LuxSensor(poll_delay=poll_delay)
 
     # If adding more than one thing, use MultipleThings() with a name.
     # In the single thing case, the thing's name will be broadcast.
-    server = WebThingServer(SingleThing(sensor), port=8888)
+    server = WebThingServer(SingleThing(sensor), port=port)
     try:
         logging.info("starting the server")
         server.start()

@@ -1,0 +1,14 @@
+#!/usr/bin/env python3
+
+import argparse
+from tsl2561webthing.main import run_server
+
+parser = argparse.ArgumentParser()
+parser.add_argument("--port", help="port to run on", default=8888, type=int)
+parser.add_argument(
+    "--polldelay", help="How often in ms to poll the sensor", default=3000, type=int
+)
+args = parser.parse_args()
+
+
+run_server(port=args.port, poll_delay=args.polldelay)

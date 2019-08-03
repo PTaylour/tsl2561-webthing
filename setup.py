@@ -30,14 +30,16 @@ package_names = packages.keys()
 packages_required = ["webthing"]
 
 setup(
-    name="tsl2561-sensor",
+    name="tsl2561-webthing",
     version="1.0.0",
     description="tsl2561 lux sensor",
     author="ptaylour",
     packages=package_names,
     package_dir=packages,
-    scripts=["bin/tsl2561-sensor"],
-    data_files=[("/lib/systemd/system", ["lib/systemd/system/tsl2561-sensor.service"])],
+    scripts=["bin/tsl2561-webthing"],
+    data_files=[
+        ("/lib/systemd/system", ["lib/systemd/system/tsl2561-webthing.service"])
+    ],
     install_requires=packages_required,
     long_description="A webthing that reports the current lux read from a sensor",
 )
