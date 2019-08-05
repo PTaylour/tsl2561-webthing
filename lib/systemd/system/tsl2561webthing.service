@@ -1,0 +1,12 @@
+[Unit]
+Description=Server for TSL2561 webthing
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/tsl2561webthing
+Restart=on-failure
+User=pi
+Group=pi
+
+[Install]
+WantedBy=multi-user.target
