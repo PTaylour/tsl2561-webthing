@@ -29,7 +29,7 @@ class LuxSensor(Thing):
                     "type": "number",
                     "description": "The current light in lux",
                     "minimum": 0,
-                    "maximum": 100,
+                    "maximum": 1000,  # apparently 1000 is an Overcast day; typical TV studio lighting
                     "unit": "lux",
                     "readOnly": True,
                 },
@@ -65,7 +65,7 @@ def run_server(port=8888, poll_delay=3.0):
         logging.info("starting the server")
         server.start()
     except KeyboardInterrupt:
-        logging.debug("canceling the sensor update looping task")
+        logging.debug("cancelling the sensor update looping task")
         sensor.cancel_update_level_task()
         logging.info("stopping the server")
         server.stop()
