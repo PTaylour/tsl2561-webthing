@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "46b505e69f94a3eb4a3b85d013c9bcbd6fc95976789fda8dd59e68cdd748ef41"
+            "sha256": "69f5cdc8b2bb63b6bc961a0532a711acc1444848e464d77ac20907c70c287836"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -16,6 +16,46 @@
         ]
     },
     "default": {
+        "adafruit-blinka": {
+            "hashes": [
+                "sha256:6320031690e341e2a8e1f620d609d4066250d07acc6c6b92ac444c0e8b6c3f92"
+            ],
+            "version": "==2.2.1"
+        },
+        "adafruit-circuitpython-busdevice": {
+            "hashes": [
+                "sha256:f1852212a9cab3f6735ed2b9e27b9620855a4ca43c95e13d6e59d7f2b02be26a"
+            ],
+            "version": "==3.0.0"
+        },
+        "adafruit-circuitpython-lis3dh": {
+            "hashes": [
+                "sha256:614ed4c367bba9f6e9673a1ad6e906f8b63bff18b0ddf5dd530e559d7ecbf116"
+            ],
+            "index": "pypi",
+            "version": "==5.0.0"
+        },
+        "adafruit-circuitpython-tsl2561": {
+            "hashes": [
+                "sha256:8cf504a3ace72920c5be2146c22a9ac4e6ecf7f8aa75bb4fac1e4cefeb0bc7b1"
+            ],
+            "index": "pypi",
+            "version": "==3.2.1"
+        },
+        "adafruit-platformdetect": {
+            "hashes": [
+                "sha256:2049f5e125b8b84e4d86ad0b896d5d211fdeb7722fbd1ac56376f7ab0a84b15f",
+                "sha256:8d065236f78a69505c89d4857c0a36305f84c41b71a9380cf7a0baf1aa0ea3d2"
+            ],
+            "version": "==1.2.2"
+        },
+        "adafruit-pureio": {
+            "hashes": [
+                "sha256:15818783be480664ff09b0251cd0402f319df0ab7515b52987abbcf31d2ed0d7",
+                "sha256:e65cd929f1d8e109513ed1e457c2742bf4f15349c1a9b7f5b1e04191624d7488"
+            ],
+            "version": "==0.2.3"
+        },
         "appdirs": {
             "hashes": [
                 "sha256:9e5896d1372858f8dd3344faf4e5014d21849c756c8d5701f78f8a103b372d92",
@@ -113,6 +153,15 @@
                 "sha256:d16a0141ec1a18405cd4ce8b4613101da75da0e9a7aec5bdd4fa804d0e0eba73"
             ],
             "version": "==1.12.0"
+        },
+        "sysv-ipc": {
+            "hashes": [
+                "sha256:b284e961274c67ed3debfdd8a43f197451c5f100955142bbed380258c6c73e06",
+                "sha256:b59fbd42c9de27b42fdda69c4aa7556312112dc6ac7246e44cd875cf049e4273",
+                "sha256:cd70548a92218ede2da499080b31e52f1d7cf60716c5cc7d468ec89e8b73c530"
+            ],
+            "markers": "platform_system != 'Windows'",
+            "version": "==1.0.0"
         },
         "toml": {
             "hashes": [

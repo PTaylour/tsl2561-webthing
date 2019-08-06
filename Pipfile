@@ -10,6 +10,8 @@ black = "*"
 black = "*"
 flake8 = "*"
 webthing = "*"
+adafruit-circuitpython-lis3dh = "*"
+adafruit-circuitpython-tsl2561 = "*"
 
 [requires]
 python_version = "3.7"

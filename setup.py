@@ -27,7 +27,11 @@ def find_packages(path, base=""):
 packages = find_packages(".")
 package_names = packages.keys()
 
-packages_required = ["webthing"]
+packages_required = [
+    "webthing",
+    "adafruit-circuitpython-tsl2561",
+    "adafruit-circuitpython-lis3dh"
+]
 
 setup(
     name="tsl2561webthing",
