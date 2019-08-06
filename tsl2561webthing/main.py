@@ -59,7 +59,7 @@ class LuxSensor(Thing):
             new_level = self.read_from_i2c()
             logging.debug("setting new humidity level: %s", new_level)
             self.level.notify_of_external_update(new_level)
-        except: socket.error:  # TODO update to appropriate IO error
+        except socket.error:  # TODO update to appropriate IO error
             logging.error("failed to read a lux value from sensor")
 
     def cancel_update_level_task(self):
