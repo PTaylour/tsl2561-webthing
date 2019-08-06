@@ -3,7 +3,20 @@ from webthing import SingleThing, Property, Thing, Value, WebThingServer
 import logging
 import random
 import tornado.ioloop
+# TODO does one of these need to be try catch? for a decent log message
+import board
+import busio
+import adafruit_tsl2561
+# TODO replace with actual error
+import socket
 
+
+def get_sensor():
+    i2c = busio.I2C(board.SCL, board.SDA)
+    sensor = adafruit_tsl2561.TSL2561(i2c)
+    return sensor
+
+sensor = get_sensor()
 
 class LuxSensor(Thing):
     """A lux sensor which updates its measurement every few seconds."""
@@ -41,17 +54,21 @@ class LuxSensor(Thing):
         self.timer.start()
 
     def update_level(self):
-        new_level = self.read_from_gpio()
-        logging.debug("setting new humidity level: %s", new_level)
-        self.level.notify_of_external_update(new_level)
+
+        try:
+            new_level = self.read_from_i2c()
+            logging.debug("setting new humidity level: %s", new_level)
+            self.level.notify_of_external_update(new_level)
+        except: socket.error:  # TODO update to appropriate IO error
+            logging.error("failed to read a lux value from sensor")
 
     def cancel_update_level_task(self):
         self.timer.stop()
 
     @staticmethod
-    def read_from_gpio():
+    def read_from_i2c():
         """Mimic an actual sensor updating its reading every couple seconds."""
-        return abs(70.0 * random.random() * (-0.5 + random.random()))
+        return sensor.lux or 0
 
 
 def run_server(port=8888, poll_delay=3.0):
