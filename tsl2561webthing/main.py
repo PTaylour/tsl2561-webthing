@@ -42,7 +42,7 @@ class LuxSensor(Thing):
                     "type": "number",
                     "description": "The current light in lux",
                     "minimum": 0,
-                    "maximum": 1000,  # apparently 1000 is an Overcast day; typical TV studio lighting
+                    "maximum": 200,  # apparently 1000 is an Overcast day; typical TV studio lighting
                     "unit": "lux",
                     "readOnly": True,
                 },
