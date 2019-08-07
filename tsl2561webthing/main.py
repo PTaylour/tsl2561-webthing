@@ -20,6 +20,10 @@ def get_sensor():
 
 sensor = get_sensor()
 
+logging.basicConfig(
+    level=10, format="%(asctime)s %(filename)s:%(lineno)s %(levelname)s %(message)s"
+)
+
 
 class LuxSensor(Thing):
     """A lux sensor which updates its measurement every few seconds."""
@@ -57,7 +61,6 @@ class LuxSensor(Thing):
         self.timer.start()
 
     def update_level(self):
-
         try:
             new_level = self.read_from_i2c()
             logging.debug("setting new humidity level: %s", new_level)
@@ -91,7 +94,4 @@ def run_server(port=8888, poll_delay=3.0):
 
 
 if __name__ == "__main__":
-    logging.basicConfig(
-        level=10, format="%(asctime)s %(filename)s:%(lineno)s %(levelname)s %(message)s"
-    )
     run_server()
