@@ -1,12 +1,13 @@
 from __future__ import division, print_function
 from webthing import SingleThing, Property, Thing, Value, WebThingServer
 import logging
-import random
 import tornado.ioloop
+
 # TODO does one of these need to be try catch? for a decent log message
 import board
 import busio
 import adafruit_tsl2561
+
 # TODO replace with actual error
 import socket
 
@@ -16,7 +17,13 @@ def get_sensor():
     sensor = adafruit_tsl2561.TSL2561(i2c)
     return sensor
 
+
 sensor = get_sensor()
+
+logging.basicConfig(
+    level=10, format="%(asctime)s %(filename)s:%(lineno)s %(levelname)s %(message)s"
+)
+
 
 class LuxSensor(Thing):
     """A lux sensor which updates its measurement every few seconds."""
@@ -54,7 +61,6 @@ class LuxSensor(Thing):
         self.timer.start()
 
     def update_level(self):
-
         try:
             new_level = self.read_from_i2c()
             logging.debug("setting new humidity level: %s", new_level)
@@ -75,8 +81,6 @@ def run_server(port=8888, poll_delay=3.0):
 
     sensor = LuxSensor(poll_delay=poll_delay)
 
-    # If adding more than one thing, use MultipleThings() with a name.
-    # In the single thing case, the thing's name will be broadcast.
     server = WebThingServer(SingleThing(sensor), port=port)
     try:
         logging.info("starting the server")
@@ -90,7 +94,4 @@ def run_server(port=8888, poll_delay=3.0):
 
 
 if __name__ == "__main__":
-    logging.basicConfig(
-        level=10, format="%(asctime)s %(filename)s:%(lineno)s %(levelname)s %(message)s"
-    )
     run_server()
